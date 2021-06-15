@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+</head>
+<body>
+
+<h3 th:if="${city}" th:text="'Temperature for ' + ${city.cityName}  + ' is: ' + ${temperature}  + '°C'"></h3>
+<h3 th:if="${missingDataError}">No location specified</h3>
+
+
+<form action="/add" method="post">
+    <h2>Add city location</h2>
+    <div>
+        <label>City name:</label>
+        <input th:type="text" name="cityName" >
+    </div>
+    <div>
+        <label>Country code:</label>
+        <input th:type="text" name="countryCode" >
+    </div>
+    <br>
+    <input th:type="submit" value="Request temperature">
+</form>
+<br>
+
+<ol>
+    <li th:each="request : ${requests}">
+        <span th:text="${request} + ' °C'"></span>
+    </li>
+</ol>
+
+
+
+</body>
+</html>
